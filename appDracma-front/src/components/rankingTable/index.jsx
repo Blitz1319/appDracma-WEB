@@ -7,7 +7,7 @@ const RankingTable = () => {
     const fetchData = async () => {
       try {
         // Substitua pela URL da sua API que retorna dados de nome e pontos
-        const response = await fetch('http://localhost:3000/alunos' || "https://dracma-app-854p-nerigleston.vercel.app/alunos");
+        const response = await fetch("https://dracma-app-854p-nerigleston.vercel.app/alunos");
         const jsonData = await response.json();
 
         // Ordenar os dados com base na pontuação em ordem decrescente

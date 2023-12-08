@@ -23,7 +23,7 @@ const LeituraCodigoBarrasPage = () => {
     const idDoAluno = resultadoLeitura.slice(0, 5);
 
     try {
-      const response = await fetch(`http://localhost:3000/alunos/${idDoAluno}` || `https://dracma-app-854p-nerigleston.vercel.app/livros/${idDoAluno}`);
+      const response = await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros/${idDoAluno}`);
       const data = await response.json();
       setAlunoData(data); // Armazenar os dados do aluno no estado
     } catch (error) {
