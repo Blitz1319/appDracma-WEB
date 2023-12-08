@@ -10,7 +10,7 @@ const LivrosPage = () => {
   // Função para carregar os livros do backend
   const carregarLivros = async () => {
     try {
-      const response = await fetch('http://host:3000/livros' || `https://dracma-app-854p-nerigleston.vercel.app/livros`);
+      const response = await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros`);
       const data = await response.json();
       setLivros(data);
     } catch (error) {
