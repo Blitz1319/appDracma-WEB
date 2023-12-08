@@ -10,7 +10,7 @@ const LivrosPage = () => {
   // Função para carregar os livros do backend
   const carregarLivros = async () => {
     try {
-      const response = await fetch(`6mvpsoj7gikhrtrk.vercel.app/livros`);
+      const response = await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros`);
       const data = await response.json();
       setLivros(data);
     } catch (error) {
