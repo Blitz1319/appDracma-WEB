@@ -10,7 +10,7 @@ const LivrosPage = () => {
   // Função para carregar os livros do backend
   const carregarLivros = async () => {
     try {
-      const response = await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros`);
+      const response = await fetch(`6mvpsoj7gikhrtrk.vercel.app/livros`);
       const data = await response.json();
       setLivros(data);
     } catch (error) {
@@ -24,7 +24,7 @@ const LivrosPage = () => {
 
   const adicionarLivro = async (novoLivro) => {
     try {
-      await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const LivrosPage = () => {
 
   const removerLivro = async (id) => {
     try {
-      await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros/${id}`, {
         method: 'DELETE',
       });
       carregarLivros();
@@ -54,7 +54,7 @@ const LivrosPage = () => {
 
   const atualizarLivro = async (livroAtualizado) => {
     try {
-      await fetch(`https://dracma-app-854p-nerigleston.vercel.app/livros/${livroAtualizado.id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros/${livroAtualizado.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

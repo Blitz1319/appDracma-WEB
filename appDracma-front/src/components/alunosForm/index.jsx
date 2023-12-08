@@ -10,7 +10,7 @@ const AlunoForm = () => {
 
   const cadastrarAluno = async (alunoData) => {
     try {
-      const response = await fetch("https://dracma-app-854p-nerigleston.vercel.app/alunos", {
+      const response = await fetch("https://6mvpsoj7gikhrtrk.vercel.app/alunos", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
