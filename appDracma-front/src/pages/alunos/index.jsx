@@ -9,7 +9,7 @@ const AlunosPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/alunos');
+        const response = await fetch('http://localhost:3000/alunos ' || "https://dracma-app-854p-nerigleston.vercel.app/alunos");
         const data = await response.json();
         setAlunos(data);
       } catch (error) {
@@ -22,7 +22,7 @@ const AlunosPage = () => {
 
   const adicionarPontos = async (id) => {
     try {
-      await fetch(`http://localhost:3000/alunos/${id}`, {
+      await fetch(`http://localhost:3000/alunos/${id}` || `https://dracma-app-854p-nerigleston.vercel.app/alunos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const AlunosPage = () => {
   
   const removerPontos = async (id) => {
     try {
-      await fetch(`http://localhost:3000/alunos/${id}`, {
+      await fetch(`http://localhost:3000/alunos/${id}` || `https://dracma-app-854p-nerigleston.vercel.app/alunos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const AlunosPage = () => {
 
   const removerAluno = async (id) => {
     try {
-      await fetch(`http://localhost:3000/alunos/${id}`, {
+      await fetch(`http://localhost:3000/alunos/${id}` || `https://dracma-app-854p-nerigleston.vercel.app/alunos/${id}`, {
         method: 'DELETE',
       });
       setAlunos((prevAlunos) => prevAlunos.filter((aluno) => aluno.id !== id));
