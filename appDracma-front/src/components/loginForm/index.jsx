@@ -1,24 +1,26 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signInFailure, signInStart, signInSuccess } from "../../redux/user/userSlice";
-import { useDispatch, useSelector } from 'react-redux';
-import Logo from "./../../assets/logoimg.png";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { signInFailure, signInStart, signInSuccess } from '../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { useAuth } from './../authContext/index'; // Importe o hook useAuth
+import Logo from './../../assets/logoimg.png';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({});
-  const { loading, error } = useSelector((state) => state.user);
+  const { login } = useAuth(); // Use o hook useAuth para acessar o contexto
+  const { loading, error } = ((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      dispatch(signInStart())
+      dispatch(signInStart());
 
       const res = await fetch('https://scaisbcaisbcapiucbcapucspasc31231hp.vercel.app/api/auth/signin', {
         method: 'POST',
@@ -36,10 +38,9 @@ const LoginForm = () => {
         return;
       }
 
-      dispatch(signInSuccess(data))
+      dispatch(signInSuccess(data));
+      login(); // Chame a função de login do contexto
       navigate('/home');
-      console.log("Usuário com email e senha correta")
-
     } catch (error) {
       dispatch(signInFailure(error));
       alert('Algo deu errado!');

@@ -1,10 +1,10 @@
-import { Outlet, Navigate } from "react-router-dom";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from './../components/authContext/index'; // Importe o hook useAuth
 
-const PrivateRoutes = () =>{
-  let auth = {'token' : true}
-  return(
-    auth.token ? <Outlet /> : <Navigate to="/" />
-  )
+function ProtectedRoute() {
+  const { authenticated } = useAuth(); // Use o hook useAuth para acessar o contexto
+
+  return authenticated ? <Outlet /> : <Navigate to="/" />;
 }
 
-export default PrivateRoutes
+export default ProtectedRoute;
