@@ -1,7 +1,7 @@
 const LogoutButton = () => {
   const handleLogout = async () => {
     try {
-      const response = await fetch("/api/auth/logout", {
+      const response = await fetch("https://scaisbcaisbcapiucbcapucspasc31231hp.vercel.app/api/auth/logout", {
         method: "POST",
         credentials: "include", // Para enviar cookies
       });
