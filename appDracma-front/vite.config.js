@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': 
       {
-        target: 'http://localhost:3001',
+        target: 'scaisbcaisbcapiucbcapucspasc31231hp.vercel.app',
         secure: false,
       },
     },
