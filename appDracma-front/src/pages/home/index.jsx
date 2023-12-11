@@ -1,5 +1,5 @@
 // Ranking.js
-import Sidebar from './../../components/sideBar';
+import Sidebar from '../../components/sideBar';
 import RankingTable from '../../components/rankingTable';
 
 const Ranking = () => {

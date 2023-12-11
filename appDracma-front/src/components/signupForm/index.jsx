@@ -1,104 +1,83 @@
-// import { useState } from "react";
-// import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-// const Register = () => {
-//     const [id, idChange] = useState("");
-//     const [nome, nomeChange] = useState("");
-//     const [senha, senhaChange] = useState("");
-//     const [email, emailChange] = useState("");
 
-//     const IsValidate = () => {
-//         let isProceed = true;
-//         let errorMessage = 'Por favor, insira um valor em ';
+export default function SigUp() {
+  const [formData, setFormData] = useState({});
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  }
 
-//         if (id === null || id === '') {
-//             isProceed = false;
-//             errorMessage += ' Nome de usuário';
-//         }
-//         if (nome === null || nome === '') {
-//             isProceed = false;
-//             errorMessage += ' Nome completo';
-//         }
-//         if (senha === null || senha === '') {
-//             isProceed = false;
-//             errorMessage += ' Senha';
-//         }
-//         if (email === null || email === '') {
-//             isProceed = false;
-//             errorMessage += ' Email';
-//         }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
 
-//         if (!isProceed) {
-//             console.log(errorMessage);
-//         } else {
-//             if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email)) {
-//                 isProceed = false;
-//                 console.log('Por favor, insira um email válido');
-//             }
-//         }
-//         return isProceed;
-//     };
+      setLoading(true);
+      setError(false);
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
 
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         let regObj = { id, nome, senha, email };
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      console.log(data);
+      setLoading(false);
+      if (data.success === false) {
+        setError(true);
+        return;
+      }
+      navigate('/');
 
-//         if (IsValidate()) {
-//             fetch("http://localhost:3000/professores", {
-//                 method: "POST",
-//                 headers: { 'content-type': 'application/json' },
-//                 body: JSON.stringify(regObj)
-//             })
-//                 .then(() => {
-//                     console.log('Registrado com sucesso.');
-//                     navigate('/login');
-//                 })
 
-//                 .catch((err) => {
-//                     console.log('Falha: ' + err.message);
-//                 });
-//         }
-//     };
+    } catch (error) {
+      setLoading(false);
+      setError(true);
+    }
 
-//     return (
-//         <div className="flex items-center justify-center h-screen">
-//             <div className="bg-white p-8 rounded shadow-md w-96">
-//                 <form onSubmit={handleSubmit}>
-//                     <div className="mb-4">
-//                         <label htmlFor="id" className="block text-sm font-medium text-gray-600">
-//                             Nome de Usuário <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                             id="id"
-//                             type="text"
-//                             value={id}
-//                             onChange={(e) => idChange(e.target.value)}
-//                             className="mt-1 p-2 w-full border rounded-md"
-//                         />
-//                     </div>
-//                     {/* ... Repeat the above structure for other input fields */}
-//                     <div className="mb-4">
-//                         <label htmlFor="email" className="block text-sm font-medium text-gray-600">
-//                             Email <span className="text-red-500">*</span>
-//                         </label>
-//                         <input
-//                             id="email"
-//                             type="text"
-//                             value={email}
-//                             onChange={(e) => emailChange(e.target.value)}
-//                             className="mt-1 p-2 w-full border rounded-md"
-//                         />
-//                     </div>
-//                     <div className="flex items-center justify-between">
-//                         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
-//                             Registrar
-//                         </button>
-//                         <Link to={'/'} className="btn btn-danger">Fechar</Link>
-//                     </div>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// };
 
-// export default Register;
+  }
+  return (
+    <div className="p-3 max-w-lg mx-auto">
+      <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          className=" bg-slate-100 p-3 rounded-lg"
+          onChange={handleChange}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          className=" bg-slate-100 p-3 rounded-lg"
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          id="password"
+          className=" bg-slate-100 p-3 rounded-lg"
+          onChange={handleChange}
+        />
+        <button disabled={loading} className="bg-slate-700 text-white p-3 rounded-lg uppercase  hover:opacity-95 disabled:opacity-80">
+          {loading ? 'Loading...' : 'Sing Up'}
+        </button>
+      </form>
+      <div className="flex gap-2 mt-5">
+        <p>Have an account?</p>
+        <Link to="/sign-in">
+          <span className="text-blue-500">Sign in</span>
+        </Link>
+      </div>
+      <p className="text-red-700 mt-5">{error && 'Something went wrong!'}</p>
+    </div>
+  );
+}
