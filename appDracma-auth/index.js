@@ -22,6 +22,9 @@ app.listen(3001, () => {
 
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.get("/", (req, res) => {
+    res.status(200).json({ msg: "Bem-vindo à API!" });
+});
 
 
 app.use((err, req, res, next) => {
