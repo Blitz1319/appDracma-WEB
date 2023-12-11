@@ -39,7 +39,7 @@ const LivrosPage = () => {
 
   const removerLivro = async (id) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros/${id}`, {
         method: 'DELETE',
       });
       carregarLivros();
@@ -54,7 +54,7 @@ const LivrosPage = () => {
 
   const atualizarLivro = async (livroAtualizado) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/${livroAtualizado.id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros/${livroAtualizado.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

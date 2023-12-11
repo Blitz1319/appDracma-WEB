@@ -22,7 +22,7 @@ const AlunosPage = () => {
 
   const adicionarPontos = async (id) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const AlunosPage = () => {
   
   const removerPontos = async (id) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ const AlunosPage = () => {
 
   const removerAluno = async (id) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
         method: 'DELETE',
       });
       setAlunos((prevAlunos) => prevAlunos.filter((aluno) => aluno.id !== id));
