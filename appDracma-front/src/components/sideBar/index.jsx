@@ -7,7 +7,7 @@ const Sidebar = () => {
     <div className="bg-red-800 h-screen w-1/6 p-8 text-center justify-center">
       <ul className="text-white">
         <li className="mb-4">
-          <Link to="/">Home</Link>
+          <Link to="/home">Home</Link>
         </li>
         <li className='mb-4'>
           <Link to="/alunos">Cadastrar Aluno</Link>
