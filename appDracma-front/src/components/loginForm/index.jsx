@@ -8,7 +8,7 @@ import Logo from './../../assets/logoimg.png';
 const LoginForm = () => {
   const [formData, setFormData] = useState({});
   const { login } = useAuth(); // Use o hook useAuth para acessar o contexto
-  const { loading, error } = ((state) => state.user);
+  const { loading } = ((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -53,27 +53,23 @@ const LoginForm = () => {
         <img className='' src={Logo} height={150} width={150} alt="Logo" />
         <form onSubmit={handleSubmit} >
           <div className="mb-4">
-            <label htmlFor="id" className="block text-sm font-medium text-white p-1">
-              Email
-            </label>
             <input
               type="text"
+              placeholder="Email"
               id="email"
               name="email"
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md text-center"
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="senha" className="block text-sm font-medium text-white p-1">
-              Senha
-            </label>
             <input
               type="password"
               id="password"
               name="password"
+              placeholder="Senha"
               onChange={handleChange}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md text-center"
             />
           </div>
           <div>

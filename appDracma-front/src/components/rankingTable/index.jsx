@@ -23,28 +23,26 @@ const RankingTable = () => {
   }, []);
 
   return (
-    <>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className="border border-gray-300 px-4 py-2">Posição</th>
-              <th className="border border-gray-300 px-4 py-2">Jogador</th>
-              <th className="border border-gray-300 px-4 py-2">Pontuação</th>
+    <div className="overflow-x-auto mb-4 h-screen">
+      <table className="min-w-full bg-white shadow-md rounded-md overflow-hidden ">
+        <thead className="bg-gray-200 ">
+          <tr className=''>
+            <th className="px-4 py-2 text-center text-gray-600">Posição</th>
+            <th className="px-4 py-2 text-center text-gray-600">Jogador</th>
+            <th className="px-4 py-2 text-center text-gray-600">Pontuação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((item, index) => (
+            <tr key={index} className = 'text-center hover:bg-gray-100'>
+              <td className="px-4 py-2 text-gray-800">{index + 1}</td>
+              <td className="px-4 py-2 text-gray-800">{item.nome}</td>
+              <td className="px-4 py-2 text-gray-800">{item.pontos}</td>
             </tr>
-          </thead>
-          <tbody>
-            {data.map((item, index) => (
-              <tr key={index}>
-                <td className="border border-gray-300 px-4 py-2">{index + 1}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.nome}</td>
-                <td className="border border-gray-300 px-4 py-2">{item.pontos}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

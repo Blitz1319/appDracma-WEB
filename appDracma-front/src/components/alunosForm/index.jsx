@@ -59,45 +59,49 @@ const AlunoForm = () => {
   };
 
   return (
-    <div className="mb-4 flex justify-center flex-col items-center">
+    <div className="mb-4 flex justify-center flex-col items-center gap-3">
       <h2 className="text-xl font-bold mb-2">Cadastrar Novo Aluno</h2>
-      <div className="flex flex-col gap-5">
-        <input
-          type="text"
-          placeholder="ID do Aluno"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          className="mr-2 px-4 py-2 border border-gray-300"
-        />
-        <input
-          type="text"
-          placeholder="Nome do Aluno"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-          className="mr-2 px-4 py-2 border border-gray-300"
-        />
-        <input
-          type="email"
-          placeholder="Email do Aluno"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="mr-2 px-4 py-2 border border-gray-300"
-        />
-        <input
-          type="password"
-          placeholder="Senha do Aluno"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          className="mr-2 px-4 py-2 border border-gray-300"
-        />
-        <button onClick={handleCadastro} className="px-4 py-2 bg-red-500 text-white">
-          Cadastrar
-        </button>
+      <div className="flex flex-col gap-5 sm:flex-row sm:gap-10">
+        <div className="flex flex-col">
+          <input
+            type="text"
+            placeholder="ID do Aluno"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            className="mb-2 px-4 py-2 border border-gray-300 text-center"
+          />
+          <input
+            type="text"
+            placeholder="Nome do Aluno"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            className="mb-2 px-4 py-2 border border-gray-300 text-center"
+          />
+        </div>
+        <div className="flex flex-col">
+          <input
+            type="email"
+            placeholder="Email do Aluno"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mb-2 px-4 py-2 border border-gray-300 text-center"
+          />
+          <input
+            type="password"
+            placeholder="Senha do Aluno"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            className="mb-2 px-4 py-2 border border-gray-300 text-center"
+          />
+        </div>
       </div>
+      <button onClick={handleCadastro} className="px-4 py-2 bg-red-500 text-white">
+        Cadastrar
+      </button>
       {errorMessage && <p className="text-red-500 mt-2">{errorMessage}</p>}
       {successMessage && <p className="text-green-500 mt-2">{successMessage}</p>}
     </div>
   );
-};
+}
 
 export default AlunoForm;

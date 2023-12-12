@@ -72,6 +72,12 @@ exports.deleteLivro = async (req, res) => {
 exports.createLivro = async (req, res) => {
   const { id, nome, valor } = req.body;
 
+  // Verifica se os campos obrigatórios estão presentes e não são vazios
+  if (!id || !nome || !valor) {
+    res.status(400).json({ message: 'Campos obrigatórios não preenchidos: id, nome e valor são necessários.' });
+    return;
+  }
+
   const livro = new Livro({
     id,
     nome,

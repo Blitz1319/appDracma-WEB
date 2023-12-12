@@ -55,7 +55,7 @@ const AlunoForm = ({ onAdicionarAluno, alunoSelecionado, onAtualizarAluno }) => 
           placeholder="Pontos"
           value={pontos}
           onChange={(e) => setPontos(e.target.value)}
-          className="mr-2 px-4 py-2 border border-gray-300"
+          className="mr-2 px-4 py-2 border border-gray-300 text-center"
         />
         {alunoSelecionado ? (
           <button onClick={handleAtualizarAluno} className="px-4 py-2 bg-green-500 text-white">

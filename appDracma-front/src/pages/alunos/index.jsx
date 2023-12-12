@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+
 import AlunoForm from '../../components/alunosForm';
 import AlunosTable from '../../components/tabAlunos';
-import AlunoForm1 from '../../components/alunosForm1';
 import Sidebar from '../../components/sideBar';
+import AlunoForm1 from '../../components/alunosForm1';
 
 const AlunosPage = () => {
   const [alunos, setAlunos] = useState([]);
@@ -15,7 +16,7 @@ const AlunosPage = () => {
         const data = await response.json();
         setAlunos(data);
       } catch (error) {
-        console.error('Erro ao buscar dados da API:', error);
+        console.error('Erro ao buscar dados da API:', error.message);
       }
     };
 
@@ -48,16 +49,16 @@ const AlunosPage = () => {
       console.error("Erro ao atualizar aluno:", error.message);
     }
   };
-  
 
   const removerAluno = async (id) => {
     try {
       await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
         method: 'DELETE',
       });
+      // Remover o aluno da lista local
       setAlunos((prevAlunos) => prevAlunos.filter((aluno) => aluno.id !== id));
     } catch (error) {
-      console.error('Erro ao remover aluno:', error);
+      console.error('Erro ao remover aluno:', error.message);
     }
   };
 

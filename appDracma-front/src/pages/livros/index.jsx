@@ -74,7 +74,7 @@ const LivrosPage = () => {
   
 
   return (
-    <div className='flex'>
+    <div className='flex h-screen'>
       <Sidebar />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">Lista de Livros</h1>

@@ -41,8 +41,8 @@ const LivroForm = ({ onAdicionarLivro, livroSelecionado, onAtualizarLivro }) => 
 
   return (
     <div className="mb-4">
-      <h2 className="text-xl font-bold mb-2">Adicionar/Editar Livro</h2>
-      <div className="flex">
+      <h2 className="text-xl font-bold mb-2 text-center">Adicionar/Editar Livro</h2>
+      <div className="flex items-center">
         <input
           type="text"
           placeholder="ID"

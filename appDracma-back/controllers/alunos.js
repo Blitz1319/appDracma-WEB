@@ -70,10 +70,15 @@ exports.deleteAluno = async (req, res) => {
   }
 };
 
-// Additional CRUD operations (Create) can be added here
-// For example:
+// Create a new aluno
 exports.createAluno = async (req, res) => {
-  const {id, nome, senha, email, pontos } = req.body;
+  const { id, nome, senha, email, pontos } = req.body;
+
+  // Verifica se os campos obrigatórios estão presentes e não são vazios
+  if (!id || !nome || !senha || !email) {
+    res.status(400).json({ message: 'Campos obrigatórios não preenchidos: id, nome, senha e email são necessários.' });
+    return;
+  }
 
   const aluno = new Aluno({
     id,
