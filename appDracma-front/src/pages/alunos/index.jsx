@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import AlunoForm from '../../components/alunosForm';
 import AlunosTable from '../../components/tabAlunos';
+import AlunoForm1 from '../../components/alunosForm1';
 import Sidebar from '../../components/sideBar';
 
 const AlunosPage = () => {
   const [alunos, setAlunos] = useState([]);
+  const [alunoSelecionado, setAlunoSelecionado] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,43 +22,30 @@ const AlunosPage = () => {
     fetchData();
   }, []);
 
-  const adicionarPontos = async (id) => {
-    try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ pontos: 1 }), // Incremento de 1 ponto
-      });
-      setAlunos((prevAlunos) =>
-        prevAlunos.map((aluno) =>
-          aluno.id === id ? { ...aluno, pontos: aluno.pontos + 1 } : aluno
-        )
-      );
-    } catch (error) {
-      console.error('Erro ao adicionar pontos:', error);
-    }
+  const editarAluno = (aluno) => {
+    setAlunoSelecionado(aluno);
   };
-  
-  const removerPontos = async (id) => {
+
+  const atualizarAluno = async (alunoAtualizado) => {
     try {
-      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${id}`, {
+      await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${alunoAtualizado.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ pontos: -1 }), // Decremento de 1 ponto
+        body: JSON.stringify({
+          pontos: alunoAtualizado.pontos,
+        }),
       });
+      setAlunoSelecionado(null);
+      // Atualizar apenas o aluno modificado na lista local
       setAlunos((prevAlunos) =>
         prevAlunos.map((aluno) =>
-          aluno.id === id
-            ? { ...aluno, pontos: Math.max(0, aluno.pontos - 1) }
-            : aluno
+          aluno.id === alunoAtualizado.id ? alunoAtualizado : aluno
         )
       );
     } catch (error) {
-      console.error('Erro ao remover pontos:', error);
+      console.error("Erro ao atualizar aluno:", error.message);
     }
   };
   
@@ -75,9 +64,17 @@ const AlunosPage = () => {
   return (
     <div className='flex'>
       <Sidebar />
-      <div className="container mx-auto p-4 text-center">
+      <div className="container mx-auto p-4 text-center flex flex-col gap-5">
         <h1 className="text-2xl font-bold mb-4">Lista de Alunos</h1>
-        <AlunosTable alunos={alunos} adicionarPontos={adicionarPontos} removerPontos={removerPontos} removerAluno={removerAluno} />
+        <AlunosTable
+          alunos={alunos}
+          editarAluno={editarAluno}
+          removerAluno={removerAluno}
+        />
+        <AlunoForm1
+          alunoSelecionado={alunoSelecionado}
+          onAtualizarAluno={atualizarAluno}
+        />
         <AlunoForm />
       </div>
     </div>
