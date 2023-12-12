@@ -65,7 +65,7 @@ const AlunosPage = () => {
   return (
     <div className='flex'>
       <Sidebar />
-      <div className="container mx-auto p-4 text-center flex flex-col gap-5 h-screen">
+      <div className="container mx-auto p-4 text-center flex flex-col gap-5 h-full">
         <h1 className="text-2xl font-bold mb-4">Lista de Alunos</h1>
         <AlunosTable
           alunos={alunos}
