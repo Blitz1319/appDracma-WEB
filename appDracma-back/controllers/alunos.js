@@ -95,3 +95,30 @@ exports.createAluno = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+// Login route for students
+exports.loginAluno = async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    // Find the student by email
+    const aluno = await Aluno.findOne({ email: email });
+
+    // Check if the student exists
+    if (!aluno) {
+      res.status(422).json({ message: 'Aluno não encontrado!' });
+      return;
+    }
+
+    // Check if the password is correct
+    if (aluno.senha !== senha) {
+      res.status(401).json({ message: 'Senha incorreta!' });
+      return;
+    }
+
+    // If everything is correct, return a success message or student details
+    res.status(200).json({ message: 'Login bem-sucedido!', aluno });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
