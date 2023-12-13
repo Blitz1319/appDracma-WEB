@@ -122,7 +122,7 @@ const LeituraCodigoBarrasPage = () => {
         <div className="mt-6">
           <h2 className="text-2xl font-bold mb-4">Livros Disponíveis para Compra</h2>
           <table className="table-auto w-full">
-            <thead>
+            <thead className='bg-gray-200'>
               <tr>
                 <th className="px-4 py-2 text-gray-600">Livro</th>
                 <th className="px-4 py-2 text-gray-600">Pontos</th>
