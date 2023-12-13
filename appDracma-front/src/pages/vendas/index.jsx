@@ -21,7 +21,7 @@ const LeituraCodigoBarrasPage = () => {
     const idDoAluno = resultadoLeitura.slice(0, 13);
 
     try {
-      const response = await fetch(`http://localhost:3000/alunos/${idDoAluno}`);
+      const response = await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${idDoAluno}`);
       const data = await response.json();
       setAlunoData(data);
       obterLivrosDisponiveis(data.pontos);
@@ -32,7 +32,7 @@ const LeituraCodigoBarrasPage = () => {
 
   const obterLivrosDisponiveis = async (pontosDoAluno) => {
     try {
-      const response = await fetch('http://localhost:3000/livros');
+      const response = await fetch('https://6mvpsoj7gikhrtrk.vercel.app/livros');
       const livros = await response.json();
       const livrosDisponiveisParaCompra = livros.filter(livro => livro.valor <= pontosDoAluno);
       setLivrosDisponiveis(livrosDisponiveisParaCompra);
@@ -48,7 +48,7 @@ const LeituraCodigoBarrasPage = () => {
         const pontosRestantes = alunoData.pontos - livro.valor;
 
         // Remover o livro do estoque (chamada à API)
-        await fetch(`http://localhost:3000/livros/${livro.id}`, {
+        await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/livros/${livro.id}`, {
           method: 'DELETE', // ou apropriado para a sua API
           headers: {
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ const LeituraCodigoBarrasPage = () => {
         });
 
         // Atualizar os pontos do aluno (chamada à API)
-        const response = await fetch(`http://localhost:3000/alunos/${alunoData.id}`, {
+        const response = await fetch(`https://6mvpsoj7gikhrtrk.vercel.app/alunos/${alunoData.id}`, {
           method: 'PATCH', // ou apropriado para a sua API
           headers: {
             'Content-Type': 'application/json',
