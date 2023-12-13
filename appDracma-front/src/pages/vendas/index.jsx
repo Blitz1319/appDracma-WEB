@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import Sidebar from '../../components/sideBar';
+import Navbar from '../../components/sideBar';
 
 const LeituraCodigoBarrasPage = () => {
   const [alunoData, setAlunoData] = useState(null);
@@ -29,8 +29,8 @@ const LeituraCodigoBarrasPage = () => {
   };
 
   return (
-    <div className="flex h-screen text-center">
-      <Sidebar />
+    <div className="h-screen text-center">
+      <Navbar />
 
       <div className="flex-1 p-6 h-screen">
         <h1 className="text-3xl font-bold mb-6">Leitura de Código de Barras</h1>
@@ -69,3 +69,4 @@ const LeituraCodigoBarrasPage = () => {
 };
 
 export default LeituraCodigoBarrasPage;
+

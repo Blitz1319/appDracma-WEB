@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import LivrosTable from '../../components/tableLivros';
 import LivroForm from '../../components/formLivros';
-import Sidebar from '../../components/sideBar';
+import Navbar from '../../components/sideBar';
 
 const LivrosPage = () => {
   const [livros, setLivros] = useState([]);
@@ -74,8 +74,8 @@ const LivrosPage = () => {
   
 
   return (
-    <div className='flex h-screen'>
-      <Sidebar />
+    <div className=''>
+      <Navbar />
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">Lista de Livros</h1>
         <LivrosTable

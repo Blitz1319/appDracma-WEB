@@ -1,29 +1,22 @@
 import { Link } from 'react-router-dom';
 import LogoutButton from '../logoutButton';
 
-const Sidebar = () => {
-
+const Navbar = () => {
   return (
-    <div className="bg-red-800 w-1/6 p-8 text-center justify-center">
-      <ul className="text-white">
-        <li className="mb-4">
-          <Link to="/home">Home</Link>
-        </li>
-        <li className='mb-4'>
-          <Link to="/alunos">Cadastrar Aluno</Link>
-        </li>
-        <li className='mb-4'>
-          <Link to="/vendas">Vendas</Link>
-        </li>
-        <li className='mb-4'>
-          <Link to="/livros">Livaria</Link>
-        </li>
-        <div>
-          <LogoutButton />
-        </div>
-      </ul>
+    <div className="bg-red-800 w-full p-7 text-white flex justify-around items-center">
+      <div>
+        <Link to="/home">Home</Link>
+      </div>
+      <div className="flex space-x-4">
+        <Link to="/alunos">Cadastrar Aluno</Link>
+        <Link to="/vendas">Vendas</Link>
+        <Link to="/livros">Livaria</Link>
+      </div>
+      <div>
+        <LogoutButton />
+      </div>
     </div>
   );
 };
 
-export default Sidebar;
+export default Navbar;
