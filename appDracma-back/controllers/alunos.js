@@ -122,3 +122,32 @@ exports.loginAluno = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+exports.changePassword = async (req, res) => {
+  const { email, novaSenha, confirmarSenha } = req.body;
+
+  try {
+    // Encontrar o aluno pelo email
+    const aluno = await Aluno.findOne({ email: email });
+
+    // Verificar se o aluno existe
+    if (!aluno) {
+      res.status(422).json({ message: 'Aluno não encontrado!' });
+      return;
+    }
+
+    // Verificar se as senhas nova e confirmar são iguais
+    if (novaSenha !== confirmarSenha) {
+      res.status(400).json({ message: 'As senhas não coincidem!' });
+      return;
+    }
+
+    // Atualizar a senha do aluno
+    aluno.senha = novaSenha;
+    await aluno.save();
+
+    res.status(200).json({ message: 'Senha alterada com sucesso!' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
